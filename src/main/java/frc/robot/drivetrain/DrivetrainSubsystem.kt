@@ -26,17 +26,6 @@ class DrivetrainSubsystem(private val drivetrainIO: DrivetrainIO, private val gy
   init {
     resetDriveEncoders()
   }
-
-  /**
-   * Velocity PID
-   */
-  private val leftVelocityPID = PIDController(2.0, 0.0, 1.0)
-  private val rightVelocityPID = PIDController(2.0, 0.0, 1.0)
-  private val velocityP = LoggedTunableNumber("Velocity/P", 2.0)
-  private val velocityI = LoggedTunableNumber("Velocity/I", 0.0)
-  private val velocityD = LoggedTunableNumber("Velocity/D", 1.0)
-  private val velocitySetpoint = LoggedTunableNumber("Velocity/Setpoint", -1.0)
-
   /**
    * Distance PID
    */
@@ -101,22 +90,6 @@ class DrivetrainSubsystem(private val drivetrainIO: DrivetrainIO, private val gy
       { leftDistancePID.setPID(it[0], it[1], it[2]); rightDistancePID.setPID(it[0], it[1], it[2]) },
       distanceP, distanceI, distanceD
     )
-
-    LoggedTunableNumber.ifChanged(
-      velocityP.hashCode() + velocityI.hashCode() + velocityD.hashCode(),
-      { leftVelocityPID.setPID(it[0], it[1], it[2]); rightVelocityPID.setPID(it[0], it[1], it[2]) },
-      velocityP, velocityI, velocityD
-    )
-
-    if (velocitySetpoint.get() != -1.0) setDesiredVelocity(velocitySetpoint.get(), velocitySetpoint.get())
-  }
-
-  fun setDesiredVelocity(leftVelocitySetpoint: Double, rightVelocitySetpoint: Double) {
-    Logger.recordOutput("Drivetrain/LeftVelocitySetpoint", leftVelocitySetpoint)
-    Logger.recordOutput("Drivetrain/RightVelocitySetpoint", rightVelocitySetpoint)
-    val leftVolts = MathUtil.clamp(leftVelocityPID.calculate(drivetrainInputs.leftVelocity, leftVelocitySetpoint), -7.5, 7.5)
-    val rightVolts = MathUtil.clamp(rightVelocityPID.calculate(drivetrainInputs.rightVelocity, rightVelocitySetpoint), -7.5, 7.5)
-    setVolts(leftVolts, rightVolts)
   }
 
   fun setDesiredVoltsV1(distanceSetpoint: Double) {
