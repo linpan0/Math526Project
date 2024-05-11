@@ -26,6 +26,6 @@ object RobotContainer {
   }
 
   private fun configureButtonBindings() {
-    SmartDashboard.putData("Drive Distance", DriveDistanceV1Command(1.0, drivetrain))
+    SmartDashboard.putData("DriveDistanceV1", DriveDistanceV1Command(drivetrain))
   }
 }

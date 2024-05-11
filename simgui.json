@@ -2,10 +2,11 @@
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
-      "/SmartDashboard/Drive Distance": "Command"
+      "/SmartDashboard/Drive Distance": "Command",
+      "/SmartDashboard/DriveDistanceV1": "Command"
     },
     "windows": {
-      "/SmartDashboard/Drive Distance": {
+      "/SmartDashboard/DriveDistanceV1": {
         "window": {
           "visible": true
         }
