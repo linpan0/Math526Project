@@ -3,10 +3,16 @@
     "types": {
       "/FMSInfo": "FMSInfo",
       "/SmartDashboard/Drive Distance": "Command",
-      "/SmartDashboard/DriveDistanceV1": "Command"
+      "/SmartDashboard/DriveDistanceV1": "Command",
+      "/SmartDashboard/DriveDistanceV2": "Command"
     },
     "windows": {
       "/SmartDashboard/DriveDistanceV1": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/DriveDistanceV2": {
         "window": {
           "visible": true
         }

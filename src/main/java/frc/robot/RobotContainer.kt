@@ -7,6 +7,7 @@ import frc.robot.drivetrain.DrivetrainConstants
 import frc.robot.drivetrain.DrivetrainIORomi
 import frc.robot.drivetrain.DrivetrainSubsystem
 import frc.robot.drivetrain.commands.DriveDistanceV1Command
+import frc.robot.drivetrain.commands.DriveDistanceV2Command
 import frc.robot.drivetrain.gyro.GyroIORomi
 
 object RobotContainer {
@@ -27,5 +28,6 @@ object RobotContainer {
 
   private fun configureButtonBindings() {
     SmartDashboard.putData("DriveDistanceV1", DriveDistanceV1Command(drivetrain))
+    SmartDashboard.putData("DriveDistanceV2", DriveDistanceV2Command(drivetrain))
   }
 }
